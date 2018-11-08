@@ -8,7 +8,7 @@ import os               # Used to pause....
 import binascii as ba   # Used to transform binary into hex.
 
 
-filename = '0701-0_all.sgy' # The filename of sgy that you want to transform, could use address if it's in other path
+filename = 'timodel_c33.segy' # The filename of sgy that you want to transform, could use address if it's in other path
 outputparfilename = 'SGYparameters.txt'
 outputdatafilename = 'SGYdata.txt'
 
@@ -40,7 +40,6 @@ def h2f( objstr , formatcode = 5):
             nn = nn / 2.0
         res = (-1) ** minus * res * 2 ** (expo)
     return res
-
 file = open(filename, 'r', encoding="cp500")
 TFheader = file.read(3200)                                  # Textual File Header encoded by EBCDIC 'cp500' x 3600
 print(TFheader)
@@ -151,17 +150,17 @@ while(ntr!=Numof_traces_per_ensemble):
 
     ndata = 0
     totaldata.append([])
-    X.append([])
-    Y.append([])
+#    X.append([])
+#    Y.append([])
     while(ndata<Sampnum):
         tempdata = h2f(ba.b2a_hex(file.read(4)),DSformatcode)
-        print(tempdata)
+#        print(tempdata)
 #        os.system('pause')
         totaldata[ntr].append(tempdata)
-        print(len(totaldata[ntr]))
+#        print(len(totaldata[ntr]))
         ndata = ndata +1
-        X[ntr].append(ntr)
-        Y[ntr].append(ndata)
+#        X[ntr].append(ntr)
+#        Y[ntr].append(ndata)
     ntr = ntr + 1
 print("Num of traces:",ntr)
 #########################################Now it's time to save datas & parameters##################################
